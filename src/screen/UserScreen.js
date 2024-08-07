@@ -54,7 +54,6 @@ const UserScreen = () => {
     return (
       <View style={styles.loaderContainer}>
         <ActivityIndicator size="large" color="#6200EA" />
-       
       </View>
     );
   }
@@ -74,16 +73,16 @@ const UserScreen = () => {
 
   return (
     <View style={styles.container}>
-    <ScrollView style={styles.scrollView}>
-      <ProfileHeader user={user} />
-      <UserInformation user={user} />
-    </ScrollView>
-    <NavigationButtons
-      userIndex={userIndex}
-      setUserIndex={setUserIndex}
-      totalUsers={users.length}
-    />
-  </View>
+      <ScrollView style={styles.scrollView}>
+        <ProfileHeader user={user} />
+        <UserInformation user={user} />
+      </ScrollView>
+      <NavigationButtons
+        userIndex={userIndex}
+        setUserIndex={setUserIndex}
+        totalUsers={users.length}
+      />
+    </View>
   );
 };
 
@@ -112,7 +111,7 @@ const styles = StyleSheet.create({
     color: '#D32F2F',
     marginBottom: 20,
     textAlign: 'center',
-    fontFamily: Platform.OS === 'ios' ? 'Helvetica' : 'Roboto',
+    fontFamily: Platform.OS === 'ios' ? 'Helvetica' : 'Quicksand-Regular',
   },
 });
 

@@ -75,13 +75,13 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       color: '#FFF',
       marginBottom: hp('1%'),
-      fontFamily: Platform.OS === 'ios' ? 'Helvetica' : 'Roboto',
+      fontFamily: Platform.OS === 'ios' ? 'Helvetica' : 'Quicksand-Medium',
     },
     fullName: {
       fontSize: wp('4.5%'),
       color: '#FFF',
       opacity: 0.8,
-      fontFamily: Platform.OS === 'ios' ? 'Helvetica' : 'Roboto',
+      fontFamily: Platform.OS === 'ios' ? 'Helvetica' : 'Quicksand-Semibold',
     },
   });
 export default ProfileHeader;
