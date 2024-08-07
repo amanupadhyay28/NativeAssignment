@@ -4,7 +4,6 @@ import {View, StyleSheet, Platform} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import UserScreen from '../src/screen/UserScreen';
-import NavigationButtons from '../src/components/NavigationButton'; // Adjust the import path as needed
 
 const Stack = createStackNavigator();
 

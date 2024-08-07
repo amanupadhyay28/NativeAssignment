@@ -1,7 +1,7 @@
 import React from 'react';
-import {View, TouchableOpacity, Text, StyleSheet, Platform} from 'react-native';
+import { View, TouchableOpacity, Text, StyleSheet, Platform } from 'react-native';
 
-const NavigationButtons = ({onNext, onPrevious}) => {
+const NavigationButtons = ({ onNext, onPrevious, currentIndex, totalUsers }) => {
   return (
     <View style={styles.container}>
       <View style={styles.curvedBackground}>
@@ -9,6 +9,13 @@ const NavigationButtons = ({onNext, onPrevious}) => {
           <TouchableOpacity style={styles.button} onPress={onPrevious}>
             <Text style={styles.buttonText}>Previous</Text>
           </TouchableOpacity>
+          
+          <View style={styles.infoContainer}>
+            <Text style={styles.infoText}>
+              {currentIndex + 1} / {totalUsers}
+            </Text>
+          </View>
+
           <TouchableOpacity style={styles.button} onPress={onNext}>
             <Text style={styles.buttonText}>Next</Text>
           </TouchableOpacity>
@@ -22,7 +29,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-end',
-    marginTop:40,
+    marginTop: 40,
   },
   curvedBackground: {
     width: '100%',
@@ -33,7 +40,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
     shadowColor: '#000',
-    shadowOffset: {width: 0, height: 2},
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 5,
     elevation: 5,
@@ -42,6 +49,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'space-between',
   },
   button: {
@@ -52,7 +60,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     shadowColor: '#000',
-    shadowOffset: {width: 0, height: 4},
+    shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
     shadowRadius: 8,
     elevation: 5,
@@ -62,6 +70,15 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     fontFamily: Platform.OS === 'ios' ? 'Helvetica' : 'Roboto',
+  },
+  infoContainer: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  infoText: {
+    fontSize: 16,
+    color: '#6200EA',
+    fontWeight: 'bold',
   },
 });
 

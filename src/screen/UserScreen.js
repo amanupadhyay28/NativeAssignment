@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { ScrollView, StyleSheet, ActivityIndicator, View, Animated, Text, Platform } from 'react-native';
 import ProfileHeader from '../components/ProfileHeader';
 import UserInformation from '../components/UserInfo';
@@ -10,14 +10,25 @@ const UserScreen = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [userIndex, setUserIndex] = useState(0);
-  const fadeAnim = useState(new Animated.Value(0))[0]; 
+  const [users, setUsers] = useState([]);
+  const fadeAnim = useState(new Animated.Value(0))[0];
 
-  const fetchUserData = async (index) => {
+  const fetchUserData = useCallback(async (index) => {
     try {
       setLoading(true);
-      setError(null); 
-      const response = await fetchUsers(80);
-      setUser(response.data[index]);
+      setError(null);
+
+      // Fetch users if not already fetched
+      if (users.length === 0) {
+        const response = await fetchUsers(80); // Adjust chunk size if necessary
+        setUsers(response.data);
+      }
+
+      // Load user at the current index
+      if (users[index]) {
+        setUser(users[index]);
+      }
+
       setLoading(false);
       Animated.timing(fadeAnim, {
         toValue: 1,
@@ -28,14 +39,14 @@ const UserScreen = () => {
       setLoading(false);
       setError('Failed to load user data. Please try again later.');
     }
-  };
+  }, [users, fadeAnim]);
 
   useEffect(() => {
     fetchUserData(userIndex);
-  }, [userIndex]);
+  }, [userIndex, fetchUserData]);
 
   const handleNext = () => {
-    if (userIndex < 79) {
+    if (userIndex < users.length - 1) {
       setUserIndex(userIndex + 1);
       fadeAnim.setValue(0);
     }
@@ -60,7 +71,7 @@ const UserScreen = () => {
     return (
       <View style={styles.errorContainer}>
         <Text style={styles.errorText}>{error}</Text>
-        <NavigationButtons onNext={handleNext} onPrevious={handlePrevious} />
+        <NavigationButtons onNext={handleNext} onPrevious={handlePrevious} currentIndex={userIndex} totalUsers={users.length} />
       </View>
     );
   }
@@ -71,7 +82,12 @@ const UserScreen = () => {
         <ProfileHeader user={user} />
         <UserInformation user={user} />
       </Animated.View>
-      <NavigationButtons onNext={handleNext} onPrevious={handlePrevious} />
+      <NavigationButtons 
+        onNext={handleNext} 
+        onPrevious={handlePrevious} 
+        currentIndex={userIndex} 
+        totalUsers={users.length} 
+      />
     </ScrollView>
   );
 };
