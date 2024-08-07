@@ -1,39 +1,50 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { ScrollView, StyleSheet, ActivityIndicator, View, Text, Platform } from 'react-native';
+import React, {useState, useEffect, useCallback} from 'react';
+import {
+  ScrollView,
+  StyleSheet,
+  ActivityIndicator,
+  View,
+  Text,
+  Platform,
+} from 'react-native';
 import ProfileHeader from '../components/ProfileHeader';
 import UserInformation from '../components/UserInfo';
 import NavigationButtons from '../components/NavigationButton';
-import { fetchUsers } from '../services/fetchUser';
-
+import {fetchUsers} from '../services/fetchUser';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 const UserScreen = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [userIndex, setUserIndex] = useState(0);
   const [users, setUsers] = useState([]);
-  
-  const fetchUserData = useCallback(async (index) => {
-    try {
-      setLoading(true);
-      setError(null);
 
-    
-      if (users.length === 0) {
-        const response = await fetchUsers(80);
-        setUsers(response.data);
+  const fetchUserData = useCallback(
+    async index => {
+      try {
+        setLoading(true);
+        setError(null);
+
+        if (users.length === 0) {
+          const response = await fetchUsers(80);
+          setUsers(response.data);
+        }
+
+        if (users[index]) {
+          setUser(users[index]);
+        }
+
+        setLoading(false);
+      } catch (err) {
+        setLoading(false);
+        setError('Failed to load user data. Please try again later.');
       }
-
-     
-      if (users[index]) {
-        setUser(users[index]);
-      }
-
-      setLoading(false);
-    } catch (err) {
-      setLoading(false);
-      setError('Failed to load user data. Please try again later.');
-    }
-  }, [users]);
+    },
+    [users],
+  );
 
   useEffect(() => {
     fetchUserData(userIndex);
@@ -43,6 +54,7 @@ const UserScreen = () => {
     return (
       <View style={styles.loaderContainer}>
         <ActivityIndicator size="large" color="#6200EA" />
+       
       </View>
     );
   }
@@ -51,7 +63,7 @@ const UserScreen = () => {
     return (
       <View style={styles.errorContainer}>
         <Text style={styles.errorText}>{error}</Text>
-        <NavigationButtons 
+        <NavigationButtons
           userIndex={userIndex}
           setUserIndex={setUserIndex}
           totalUsers={users.length}
@@ -61,17 +73,17 @@ const UserScreen = () => {
   }
 
   return (
-    <ScrollView style={styles.container}>
-      <>
-        <ProfileHeader user={user} />
-        <UserInformation user={user} />
-      </>
-      <NavigationButtons 
-        userIndex={userIndex}
-        setUserIndex={setUserIndex}
-        totalUsers={users.length}
-      />
+    <View style={styles.container}>
+    <ScrollView style={styles.scrollView}>
+      <ProfileHeader user={user} />
+      <UserInformation user={user} />
     </ScrollView>
+    <NavigationButtons
+      userIndex={userIndex}
+      setUserIndex={setUserIndex}
+      totalUsers={users.length}
+    />
+  </View>
   );
 };
 
@@ -80,10 +92,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#EDEDED',
   },
+  scrollView: {
+    flex: 1,
+  },
   loaderContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#F5F5F5',
   },
   errorContainer: {
     flex: 1,

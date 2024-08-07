@@ -1,8 +1,11 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 import UserInfoCard from './UserInfoCard';
-
 
 const UserInformation = ({user}) => {
   return (
@@ -28,32 +31,17 @@ const UserInformation = ({user}) => {
 
 const styles = StyleSheet.create({
   infoContainer: {
-    padding: 20,
+    padding: wp('4%'),
+    margin: wp('3%'),
+    height: hp('50%'),
     backgroundColor: '#FFFFFF',
-    marginVertical: 20,
-    borderRadius: 25,
+    marginVertical: hp('3%'),
+    borderRadius: wp('6%'),
     shadowColor: '#000',
     shadowOpacity: 0.2,
     shadowOffset: {width: 0, height: 2},
     shadowRadius: 10,
     elevation: 5,
-  },
-  infoRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 15,
-  },
-  infoLabel: {
-    marginLeft: 10,
-    fontSize: 16,
-    fontWeight: '500',
-    color: '#6200EA',
-    flex: 1,
-  },
-  infoValue: {
-    fontSize: 16,
-    color: '#555',
-    flex: 2,
   },
 });
 
