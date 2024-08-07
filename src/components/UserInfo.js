@@ -1,31 +1,27 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 
-const UserInfo = ({label, value, icon}) => {
-  return (
-    <View style={styles.infoRow}>
-      <Icon name={icon} size={24} color="#6200EA" />
-      <Text style={styles.infoLabel}>{label}:</Text>
-      <Text style={styles.infoValue}>{value}</Text>
-    </View>
-  );
-};
+import UserInfoCard from './UserInfoCard';
+
 
 const UserInformation = ({user}) => {
   return (
     <View style={styles.infoContainer}>
-      <UserInfo label="ID" value={user.id} icon="fingerprint" />
-      <UserInfo label="UID" value={user.uid} icon="account-box" />
-      <UserInfo label="First Name" value={user.first_name} icon="person" />
-      <UserInfo
+      <UserInfoCard label="ID" value={user.id} icon="fingerprint" />
+      <UserInfoCard label="UID" value={user.uid} icon="account-box" />
+      <UserInfoCard label="First Name" value={user.first_name} icon="person" />
+      <UserInfoCard
         label="Last Name"
         value={user.last_name}
         icon="person-outline"
       />
-      <UserInfo label="Username" value={user.username} icon="account-circle" />
-      <UserInfo label="Email" value={user.email} icon="email" />
-      <UserInfo label="Password" value={user.password} icon="lock" />
+      <UserInfoCard
+        label="Username"
+        value={user.username}
+        icon="account-circle"
+      />
+      <UserInfoCard label="Email" value={user.email} icon="email" />
+      <UserInfoCard label="Password" value={user.password} icon="lock" />
     </View>
   );
 };
