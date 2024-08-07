@@ -8,7 +8,7 @@ import {
   Platform,
 } from 'react-native';
 import ProfileHeader from '../components/ProfileHeader';
-import UserInformation from '../components/UserInfo';
+import UserInformation from '../components/User/UserInfo';
 import NavigationButtons from '../components/NavigationButton';
 import {fetchUsers} from '../services/fetchUser';
 import {
