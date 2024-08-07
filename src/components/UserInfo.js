@@ -1,4 +1,3 @@
-// src/components/UserInfo.js
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -17,9 +16,12 @@ const UserInformation = ({ user }) => {
   return (
     <View style={styles.infoContainer}>
       <UserInfo label="ID" value={user.id} icon="fingerprint" />
-      <UserInfo label="UID" value={user.uid} icon="account-circle" />
-      <UserInfo label="Password" value={user.password} icon="vpn-key" />
+      <UserInfo label="UID" value={user.uid} icon="account-box" />
+      <UserInfo label="First Name" value={user.first_name} icon="person" />
+      <UserInfo label="Last Name" value={user.last_name} icon="person-outline" />
+      <UserInfo label="Username" value={user.username} icon="account-circle" />
       <UserInfo label="Email" value={user.email} icon="email" />
+      <UserInfo label="Password" value={user.password} icon="lock" />
     </View>
   );
 };
@@ -27,11 +29,11 @@ const UserInformation = ({ user }) => {
 const styles = StyleSheet.create({
   infoContainer: {
     padding: 20,
-    backgroundColor: '#FFF',
+    backgroundColor: '#FFFFFF',
     marginVertical: 10,
     borderRadius: 10,
     shadowColor: '#000',
-    shadowOpacity: 0.1,
+    shadowOpacity: 0.2,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 10,
     elevation: 5,
@@ -45,12 +47,13 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     fontSize: 16,
     fontWeight: '500',
-    color: '#333',
+    color: '#6200EA',
+    flex: 1,
   },
   infoValue: {
-    marginLeft: 5,
     fontSize: 16,
     color: '#555',
+    flex: 2,
   },
 });
 

@@ -16,7 +16,7 @@ const UserScreen = () => {
   const fetchUserData = async (index) => {
     try {
       setLoading(true);
-      setError(null); // Reset any previous errors
+      setError(null); 
       const response = await fetchUsers(80);
       setUser(response.data[index]);
       setLoading(false);
