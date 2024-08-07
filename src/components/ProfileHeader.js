@@ -1,6 +1,5 @@
-// src/components/ProfileHeader.js
 import React from 'react';
-import { View, Text, Image, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, Image, StyleSheet, Dimensions, Platform } from 'react-native';
 
 const ProfileHeader = ({ user }) => {
   const { width } = Dimensions.get('window');
@@ -30,6 +29,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 40,
     paddingHorizontal: 20,
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 10 },
+        shadowOpacity: 0.3,
+        shadowRadius: 15,
+      },
+      android: {
+        elevation: 10,
+      },
+    }),
   },
   avatarWrapper: {
     width: 150,
@@ -57,11 +67,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#FFF',
     marginBottom: 5,
+    fontFamily: Platform.OS === 'ios' ? 'Helvetica' : 'Roboto',
   },
   fullName: {
     fontSize: 18,
     color: '#FFF',
     opacity: 0.8,
+    fontFamily: Platform.OS === 'ios' ? 'Helvetica' : 'Roboto',
   },
 });
 

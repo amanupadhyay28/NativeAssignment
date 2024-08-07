@@ -1,6 +1,5 @@
-// src/screens/UserScreen.js
 import React, { useState, useEffect } from 'react';
-import { ScrollView, StyleSheet, ActivityIndicator, View, Animated, Text } from 'react-native';
+import { ScrollView, StyleSheet, ActivityIndicator, View, Animated, Text, Platform } from 'react-native';
 import ProfileHeader from '../components/ProfileHeader';
 import UserInformation from '../components/UserInfo';
 import NavigationButtons from '../components/NavigationButton';
@@ -98,6 +97,7 @@ const styles = StyleSheet.create({
     color: '#D32F2F',
     marginBottom: 20,
     textAlign: 'center',
+    fontFamily: Platform.OS === 'ios' ? 'Helvetica' : 'Roboto',
   },
 });
 

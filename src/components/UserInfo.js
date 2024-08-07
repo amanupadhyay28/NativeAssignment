@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-const UserInfo = ({ label, value, icon }) => {
+const UserInfo = ({label, value, icon}) => {
   return (
     <View style={styles.infoRow}>
       <Icon name={icon} size={24} color="#6200EA" />
@@ -12,13 +12,17 @@ const UserInfo = ({ label, value, icon }) => {
   );
 };
 
-const UserInformation = ({ user }) => {
+const UserInformation = ({user}) => {
   return (
     <View style={styles.infoContainer}>
       <UserInfo label="ID" value={user.id} icon="fingerprint" />
       <UserInfo label="UID" value={user.uid} icon="account-box" />
       <UserInfo label="First Name" value={user.first_name} icon="person" />
-      <UserInfo label="Last Name" value={user.last_name} icon="person-outline" />
+      <UserInfo
+        label="Last Name"
+        value={user.last_name}
+        icon="person-outline"
+      />
       <UserInfo label="Username" value={user.username} icon="account-circle" />
       <UserInfo label="Email" value={user.email} icon="email" />
       <UserInfo label="Password" value={user.password} icon="lock" />
@@ -30,11 +34,11 @@ const styles = StyleSheet.create({
   infoContainer: {
     padding: 20,
     backgroundColor: '#FFFFFF',
-    marginVertical: 10,
-    borderRadius: 10,
+    marginVertical: 20,
+    borderRadius: 25,
     shadowColor: '#000',
     shadowOpacity: 0.2,
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: {width: 0, height: 2},
     shadowRadius: 10,
     elevation: 5,
   },
