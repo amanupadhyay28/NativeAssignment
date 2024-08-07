@@ -1,21 +1,28 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, Dimensions, Platform } from 'react-native';
-
-const ProfileHeader = ({ user }) => {
-  const { width } = Dimensions.get('window');
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
   
+  Platform,
+} from 'react-native';
+
+const ProfileHeader = ({user}) => {
   return (
     <View style={styles.headerContainer}>
       <View style={styles.avatarWrapper}>
-        <Image 
-          source={{ uri: user.avatar }}
+        <Image
+          source={{uri: user.avatar}}
           style={styles.avatar}
           resizeMode="cover"
         />
       </View>
       <View style={styles.userInfo}>
         <Text style={styles.username}>{user.username}</Text>
-        <Text style={styles.fullName}>{user.first_name} {user.last_name}</Text>
+        <Text style={styles.fullName}>
+          {user.first_name} {user.last_name}
+        </Text>
       </View>
     </View>
   );
@@ -32,7 +39,7 @@ const styles = StyleSheet.create({
     ...Platform.select({
       ios: {
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 10 },
+        shadowOffset: {width: 0, height: 10},
         shadowOpacity: 0.3,
         shadowRadius: 15,
       },
@@ -49,7 +56,7 @@ const styles = StyleSheet.create({
     borderWidth: 5,
     borderColor: '#FFF',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.3,
     shadowRadius: 5,
     elevation: 10,

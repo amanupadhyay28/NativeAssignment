@@ -1,22 +1,35 @@
 import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet, Platform } from 'react-native';
 
-const NavigationButtons = ({ onNext, onPrevious, currentIndex, totalUsers }) => {
+const NavigationButtons = ({ userIndex, setUserIndex, totalUsers }) => {
+
+  const handleNext = () => {
+    if (userIndex < totalUsers - 1) {
+      setUserIndex(userIndex + 1);
+    }
+  };
+
+  const handlePrevious = () => {
+    if (userIndex > 0) {
+      setUserIndex(userIndex - 1);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.curvedBackground}>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={onPrevious}>
+          <TouchableOpacity style={styles.button} onPress={handlePrevious}>
             <Text style={styles.buttonText}>Previous</Text>
           </TouchableOpacity>
           
           <View style={styles.infoContainer}>
             <Text style={styles.infoText}>
-              {currentIndex + 1} / {totalUsers}
+              {userIndex + 1} / {totalUsers}
             </Text>
           </View>
 
-          <TouchableOpacity style={styles.button} onPress={onNext}>
+          <TouchableOpacity style={styles.button} onPress={handleNext}>
             <Text style={styles.buttonText}>Next</Text>
           </TouchableOpacity>
         </View>

@@ -1,9 +1,8 @@
-// src/AppNavigator.js
 import React from 'react';
 import {View, StyleSheet, Platform} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import UserScreen from '../src/screen/UserScreen';
+import UserScreen from '../screen/UserScreen';
 
 const Stack = createStackNavigator();
 

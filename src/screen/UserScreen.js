@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { ScrollView, StyleSheet, ActivityIndicator, View, Animated, Text, Platform } from 'react-native';
+import { ScrollView, StyleSheet, ActivityIndicator, View, Text, Platform } from 'react-native';
 import ProfileHeader from '../components/ProfileHeader';
 import UserInformation from '../components/UserInfo';
 import NavigationButtons from '../components/NavigationButton';
-import { fetchUsers } from '../services/api';
+import { fetchUsers } from '../services/fetchUser';
 
 const UserScreen = () => {
   const [user, setUser] = useState(null);
@@ -11,53 +11,33 @@ const UserScreen = () => {
   const [error, setError] = useState(null);
   const [userIndex, setUserIndex] = useState(0);
   const [users, setUsers] = useState([]);
-  const fadeAnim = useState(new Animated.Value(0))[0];
-
+  
   const fetchUserData = useCallback(async (index) => {
     try {
       setLoading(true);
       setError(null);
 
-      // Fetch users if not already fetched
+    
       if (users.length === 0) {
-        const response = await fetchUsers(80); // Adjust chunk size if necessary
+        const response = await fetchUsers(80);
         setUsers(response.data);
       }
 
-      // Load user at the current index
+     
       if (users[index]) {
         setUser(users[index]);
       }
 
       setLoading(false);
-      Animated.timing(fadeAnim, {
-        toValue: 1,
-        duration: 300,
-        useNativeDriver: true,
-      }).start();
     } catch (err) {
       setLoading(false);
       setError('Failed to load user data. Please try again later.');
     }
-  }, [users, fadeAnim]);
+  }, [users]);
 
   useEffect(() => {
     fetchUserData(userIndex);
   }, [userIndex, fetchUserData]);
-
-  const handleNext = () => {
-    if (userIndex < users.length - 1) {
-      setUserIndex(userIndex + 1);
-      fadeAnim.setValue(0);
-    }
-  };
-
-  const handlePrevious = () => {
-    if (userIndex > 0) {
-      setUserIndex(userIndex - 1);
-      fadeAnim.setValue(0);
-    }
-  };
 
   if (loading) {
     return (
@@ -71,22 +51,25 @@ const UserScreen = () => {
     return (
       <View style={styles.errorContainer}>
         <Text style={styles.errorText}>{error}</Text>
-        <NavigationButtons onNext={handleNext} onPrevious={handlePrevious} currentIndex={userIndex} totalUsers={users.length} />
+        <NavigationButtons 
+          userIndex={userIndex}
+          setUserIndex={setUserIndex}
+          totalUsers={users.length}
+        />
       </View>
     );
   }
 
   return (
     <ScrollView style={styles.container}>
-      <Animated.View style={{ opacity: fadeAnim }}>
+      <>
         <ProfileHeader user={user} />
         <UserInformation user={user} />
-      </Animated.View>
+      </>
       <NavigationButtons 
-        onNext={handleNext} 
-        onPrevious={handlePrevious} 
-        currentIndex={userIndex} 
-        totalUsers={users.length} 
+        userIndex={userIndex}
+        setUserIndex={setUserIndex}
+        totalUsers={users.length}
       />
     </ScrollView>
   );
