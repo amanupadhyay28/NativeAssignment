@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, TouchableOpacity, Text, StyleSheet, Platform} from 'react-native';
+import CustomButton from '../ui/Button';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -21,9 +22,7 @@ const NavigationButtons = ({userIndex, setUserIndex, totalUsers}) => {
     <View style={styles.container}>
       <View style={styles.curvedBackground}>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={handlePrevious}>
-            <Text style={styles.buttonText}>Previous</Text>
-          </TouchableOpacity>
+        <CustomButton onPress={handlePrevious} title="Previous" />
 
           <View style={styles.infoContainer}>
             <Text style={styles.infoText}>
@@ -31,9 +30,7 @@ const NavigationButtons = ({userIndex, setUserIndex, totalUsers}) => {
             </Text>
           </View>
 
-          <TouchableOpacity style={styles.button} onPress={handleNext}>
-            <Text style={styles.buttonText}>Next</Text>
-          </TouchableOpacity>
+          <CustomButton onPress={handleNext} title="Next" />
         </View>
       </View>
     </View>
@@ -67,25 +64,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  button: {
-    backgroundColor: '#6200EA',
-    borderRadius: wp('5%'),
-    paddingVertical: hp('1.5%'),
-    paddingHorizontal: wp('5%'),
-    alignItems: 'center',
-    justifyContent: 'center',
-    shadowColor: '#000',
-    shadowOffset: {width: 0, height: 4},
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 5,
-  },
-  buttonText: {
-    color: '#FFF',
-    fontSize: wp('4%'),
-
-    fontFamily: Platform.OS === 'ios' ? 'Helvetica' : 'Quicksand-Bold',
-  },
+  
   infoContainer: {
     flex: 1,
     alignItems: 'center',
