@@ -53,7 +53,8 @@ This React Native application displays user information fetched from a public AP
 4. Run the app:
 
    ```bash
-   npm start
+   npm run android for android
+   npm run ios for ios 
    ```
 
    Follow the instructions provided by the React Native CLI to run the app on your emulator or device.
