@@ -26,7 +26,7 @@ This React Native application displays user information fetched from a public AP
 - **AppNavigator.js**: Configures the navigation stack.
 
 
-## screeenShots
+## ScreeenShots
 ![Home Screen](./ss/ss.jpeg)
 
 
