@@ -1,9 +1,8 @@
-Here's the updated `README.md` file reflecting the changes:
 
-```markdown
-# User Information App
 
-## Overview
+## User Information App
+
+Overview
 
 This React Native application displays user information fetched from a public API. It includes navigation buttons to view previous and next users and features a responsive layout with a focus on a clean and intuitive UI.
 
@@ -25,6 +24,11 @@ This React Native application displays user information fetched from a public AP
 - **screen**: Contains the main screen component.
   - `UserScreen.js`: Main screen displaying user data and handling navigation.
 - **AppNavigator.js**: Configures the navigation stack.
+
+
+## screeenShots
+![Home Screen](./ss/ss.jpeg)
+
 
 ## Setup
 
